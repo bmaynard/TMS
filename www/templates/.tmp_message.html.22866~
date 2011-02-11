@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}View Email Message{% endblock %}
+{% block content %}
+<h2>Viewing Message: {{ message.subject }}</h2>
+
+<table>
+	<tr>
+		<th>From:</th>
+		<td>{{ message.from }}</td>
+	</tr>
+	<tr>
+		<th>To:</th>
+		<td>{{ message.to }}</td>
+	</tr>
+	<tr>
+		<th>Content Type:</th>
+		<td>{{ message.content_type }}</td>
+	</tr>
+	<tr>
+		<th>Subject:</th>
+		<td>{{ message.subject }}</td>
+	</tr>
+	<tr>
+		<th>Received Date:</th>
+		<td>{{ message.reeived_date }}</td>
+	</tr>
+	<tr>
+		<th>Message:</th>
+		<td>{{ message.message }}</td>
+	</tr>
+	<tr>
+		<th>Source:</th>
+		<td>{{ message.headers }}</td>
+	</tr>
+</table>
+{% endblock %}
