@@ -1,0 +1,11 @@
+# Configuration file for TMS
+
+LISTEN_IP = '0.0.0.0'
+
+SMTP_PORT = 1082
+WEB_PORT = 8181
+
+MYSQL_HOST = 'localhost'
+MYSQL_USER = 'MYSQL_USER'
+MYSQL_PASS = 'MYSQL_PASS'
+MYSQL_DB = 'MYSQL_PASS'

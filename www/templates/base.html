@@ -1,52 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
-
-	Nonzero1.0 by nodethirtythree design
-	http://www.nodethirtythree.com
-	missing in a maze
-
--->
+<!doctype html>
 <html>
-<head>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
-<title>{% block title %}{% endblock %}</title>
-<meta name="keywords" content="" />
-<meta name="description" content="" />
-<link rel="stylesheet" type="text/css" title="Red" href="style.css" />
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-</script>
+		<title>{% block title %}{% endblock %}</title>
+		<style media="all" type="text/css">
+			@import "css/reset.css";
+			@import "css/style.css";
+			@import "css/jquery.fancybox-1.3.4.css"
+		</style>
+		
+		<script type="text/javascript" src="js/jquery-1.5.min.js"></script>
+		<script type="text/javascript" src="js/jquery.fancybox-1.3.4.pack.js"></script>
+		<script type="text/javascript" src="js/jquery.easing-1.3.pack.js"></script>
 </head>
 <body>
-
-<div id="header">
-
-	<div id="header_inner" class="fixed">
-
-		<div id="logo">
-			<h1><span>TMS</span></h1>
-			<h2>Temporary Mail Server</h2>
+	<div id="wrapper">
+		<div class="logo">
+			<h1>Administration</h1>
 		</div>
-		
-		<div id="menu">
-			<ul>
-				<li><a href="/" class="active">Email List</a></li>
+		<div class="navigation">
+			<ul class="clearfix">
+				<li><a href="/">Message List</a></li>
 			</ul>
 		</div>
 		
+		<div class="content">
+			{% block content %}{% endblock %}
+		</div>
 	</div>
-</div>
-
-<div id="main">
-
-	<div id="main_inner" class="fixed">
-
-		{% block content %}{% endblock %}
-
-		<br class="clear" />
-
-	</div>
-
-</div>
-
 </body>
 </html>

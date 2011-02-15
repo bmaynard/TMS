@@ -1,36 +1,43 @@
-{% extends "base.html" %}
-{% block title %}View Email Message{% endblock %}
 {% block content %}
-<h2>Viewing Message: {{ message.subject }}</h2>
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 
-<table>
-	<tr>
-		<th>From:</th>
-		<td>{{ message.from }}</td>
-	</tr>
-	<tr>
-		<th>To:</th>
-		<td>{{ message.to }}</td>
-	</tr>
-	<tr>
-		<th>Content Type:</th>
-		<td>{{ message.content_type }}</td>
-	</tr>
-	<tr>
-		<th>Subject:</th>
-		<td>{{ message.subject }}</td>
-	</tr>
-	<tr>
-		<th>Received Date:</th>
-		<td>{{ message.reeived_date }}</td>
-	</tr>
-	<tr>
-		<th>Message:</th>
-		<td>{{ message.message }}</td>
-	</tr>
-	<tr>
-		<th>Source:</th>
-		<td>{{ message.headers }}</td>
-	</tr>
-</table>
+		<title>{% block title %}{% endblock %}</title>
+		<style media="all" type="text/css">
+			@import "css/reset.css";
+			@import "css/style.css";
+		</style>
+		
+		<script type="text/javascript" src="js/jquery-1.5.min.js"></script>
+</head>
+<body>
+	<div class="messagebox">
+		<div class="title">From: <span>{{ message.mail_from }}</span></div>
+		<div class="title">To: <span>{{ message.mail_to }}</span></div>
+		<div class="title">Subject: <span>{{ message.subject }}</span></div>
+		<div class="information clearfix">
+			<span>{{ message.received_date }}</span>
+			<span class="content-type">Content Type: {{ message.content_type }}</span>
+		</div>
+		<div class="message">
+			{% if message.html_body != '' %}
+			<p class="button"><a href="#" onclick="$('#htmlEmail').toggle();return false;">Toggle HTML</a></p>
+			<div id="htmlEmail" style="display:none;">
+				<iframe src="/message?id={{ message.message_id }}&amp;onlymsg=true" height="400">Your browser does not support iframes</iframe>
+			</div>
+			{% endif %}
+		</div>
+		<div class="message">
+			{% if message.text_body != '' %}
+			<p><a href="#" onclick="$('#textEmail').toggle();return false;">Toggle Text</a></p>
+			<div id="textEmail" style="display:none;">
+				<pre>{{ message.text_body }}</pre>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</body>
+</html>
 {% endblock %}

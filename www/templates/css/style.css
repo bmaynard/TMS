@@ -1,0 +1,261 @@
+/* 
+    Document   : style.css
+    Created on : Jul 9, 2010, 4:47:15 PM
+    Author     : benmaynard
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	color: #343434;
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #3c4f63;
+	margin: 10px 0 10px 0;
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 1.7em;
+}
+
+h2 {
+	font-size: 1.5em;
+}
+
+h3 {
+	font-size: 1.3em;
+}
+
+h4 {
+	font-size: 1.2em;
+}
+
+h5 {
+	font-size: 1.1em;
+}
+
+h6 {
+	font-size: 1.0em;
+}
+
+a {
+	color: #6b6b6b;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+#wrapper {
+	background: #FFF;
+	padding: 0;
+}
+
+#wrapper .logo {
+	background: #5a86b2;
+	color: #FFF;
+	padding: 20px;
+	border-bottom: 1px solid #bababa;
+}
+
+#wrapper .logo h1 {
+	color: #FFF;
+}
+
+#wrapper .content {
+	padding: 20px;
+}
+
+/** Navigation **/
+
+#wrapper .navigation ul {
+	list-style: none;
+	margin: 0;
+	width: 100%;
+	background: #3c4f63;
+	border-bottom: 1px solid #bababa;
+}
+
+#wrapper .navigation ul li {
+	float: left;
+	margin: 0;
+	border-right: 1px solid #bababa;
+}
+
+#wrapper .navigation ul li a {
+	display: block;
+	padding: 15px 20px 15px 20px;
+	color: #FFF;
+	text-decoration: none;
+}
+
+#wrapper .navigation ul li a:hover {
+	background: #5a86b2;
+}
+
+#wrapper .navigation ul li a.selected {
+	background: #5a86b2;
+}
+
+/** Options navigation **/
+
+#wrapper .options ul {
+	list-style: none;
+	margin: 0;
+	width: 100%;
+	background: #91a2b4;
+	border-bottom: 1px solid #848586;
+}
+
+#wrapper .options ul li {
+	float: left;
+	margin: 0;
+	border-right: 1px solid #848586;
+	font-size: 0.8em;
+}
+
+#wrapper .options ul li a {
+	display: block;
+	padding: 10px;
+	color: #FFF;
+	text-decoration: none;
+}
+
+#wrapper .options ul li a:hover {
+	background: #5a86b2;
+}
+
+#wrapper .options ul li a.selected {
+	background: #5a86b2;
+}
+
+/** Table Styles **/
+
+table {
+	border-collapse: collapse;
+	margin: 10px 0 10px 0;
+	width: 100%;
+}
+
+table th {
+	padding: 7px;
+	text-align: left;
+	font-weight: bold;
+	border: 1px solid #929292;
+	background: #6189b2;
+	color: #FFF;
+	vertical-align: top;
+}
+
+table td {
+	padding: 7px;
+	border: 1px solid #929292;
+}
+
+/* Error + Message Styles */
+
+#wrapper .content .error {
+	background: #DAB3AF;
+	border: 1px solid #7b7b7b;
+	margin: 20px 0 20px 0;
+	padding: 15px;
+	color: #414141;
+}
+
+#wrapper .content .error h2 {
+	margin: 0 0 10px 0;
+	color: #414141;
+	font-size: 1.2em;
+}
+
+#wrapper .content .message
+{
+	background: #dfffce;
+	color: #414141;
+	margin: 20px 0 20px 0;
+	border: 1px solid #7b7b7b;
+	padding: 15px;
+}
+
+/* float clearing for IE6 */
+* html .clearfix{
+  height: 1%;
+  overflow: visible;
+}
+
+/* float clearing for IE7 */
+*+html .clearfix{
+  min-height: 1%;
+}
+
+/* float clearing for everyone else */
+.clearfix:after{
+  clear: both;
+  content: ".";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  font-size: 0;
+}
+
+
+/** Message popup styles **/
+
+.messagebox {
+ 	
+}
+ 
+.messagebox .title {
+	padding: 10px;
+	border-bottom: 1px solid #CCC;
+	background: #5A86B2;
+	color: #FFF;
+	font-weight: bold;
+}
+
+.messagebox .title span {
+	margin-left: 5px;
+	font-weight: normal;
+}
+
+.messagebox .information {
+	padding: 10px;
+	font-size: 0.8em;
+	border-bottom: 1px solid #CCC;
+}
+
+.messagebox .information span {
+	display: block;
+	width: 50%;
+	float: left;
+	color: #818181;
+}
+
+.messagebox .information span.content-type {
+	text-align: right;
+}
+
+.messagebox .message {
+	padding: 10px;
+	font-size: 0.8em;
+	border-bottom: 1px solid #CCC;
+}
+
+.messagebox .message iframe {
+	margin-top: 10px;
+	border-top: 1px solid #CCC;
+}
+
+.messagebox .message iframe, .messagebox .message pre {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #818181;
+	width: 100%;
+	overflow: auto;
+}
