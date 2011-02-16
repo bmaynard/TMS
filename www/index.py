@@ -1,7 +1,6 @@
 from jinja2 import Environment, FileSystemLoader
 from os.path import join, dirname, abspath
-import MySQLdb
-import settings
+import sqlite3
 
 # Show the view for the message page
 
@@ -10,12 +9,11 @@ def process_request(request, Handler):
 	env = Environment(autoescape=True,loader=FileSystemLoader(join(ROOT, 'templates')))
 	template = env.get_template('index.html')
 	
-	db = MySQLdb.connect(settings.MYSQL_HOST, settings.MYSQL_USER, settings.MYSQL_PASS, settings.MYSQL_DB)
+	conn = sqlite3.connect('temp.db', isolation_level=None)
 	
-	cursor = db.cursor()
-	cursor.execute ("SELECT message_id, mail_from, mail_to, subject, received_date FROM message ORDER BY received_date DESC")
+	cursor = conn.cursor()
+	cursor.execute("SELECT message_id, mail_from, mail_to, subject, received_date FROM message ORDER BY message_id DESC")
 	result_set = cursor.fetchall()
+	conn.close()
 	
-	
-	db.close()
 	return template.render({'rows': result_set})

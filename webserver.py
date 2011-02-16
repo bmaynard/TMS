@@ -19,9 +19,9 @@ class Handler(BaseHTTPRequestHandler):
 			
 			if content != False:
 				self.send_response(200)
-				self.send_header("Content-type", "text/html")
+				self.send_header("Content-type", "text/html; charset=UTF-8'")
 				self.end_headers()
-				self.wfile.write("%s" % content)
+				self.wfile.write(content.encode('utf-8'))
 			
 		else:
 			# Is the a file in the file system?

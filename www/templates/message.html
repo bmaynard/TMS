@@ -21,26 +21,27 @@
 			<span>{{ message.received_date }}</span>
 			<span class="content-type">Content Type: {{ message.content_type }}</span>
 		</div>
+		{% if message.html_body != '' %}
 		<div class="message">
-			{% if message.html_body != '' %}
 			<p class="button"><a href="#" onclick="$('#htmlEmail').toggle();return false;">Toggle HTML</a></p>
 			<div id="htmlEmail" style="display:none;">
 				<iframe src="/message?id={{ message.message_id }}&amp;onlymsg=true" height="400">Your browser does not support iframes</iframe>
 			</div>
-			{% endif %}
 		</div>
+		{% endif %}
+		{% if message.text_body != '' %}
 		<div class="message">
-			{% if message.text_body == True %}
 			<p><a href="#" onclick="$('#textEmail').toggle();return false;">Toggle Text</a></p>
 			<div id="textEmail" style="display:none;">
-				<pre id="text_body"></pre>
-				<script type="text/javascript">
-					$.get('/message?id={{ message.message_id }}&amp;onlytext=true', function(data) {
-						$('#text_body').html(data);
-					});
-				</script>
+				<pre id="text_body">{{ message.text_body }}</pre>
 			</div>
-			{% endif %}
+		</div>
+		{% endif %}
+		<div class="message">
+			<p><a href="#" onclick="$('#textOriginal').toggle();return false;">Toggle Original Source</a></p>
+			<div id="textOriginal" style="display:none;">
+				<pre id="text_body">{{ message.original }}</pre>
+			</div>
 		</div>
 	</div>
 </body>

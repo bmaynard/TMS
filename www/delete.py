@@ -1,7 +1,7 @@
 from jinja2 import Environment, FileSystemLoader
 from os.path import join, dirname, abspath
-import MySQLdb
-import settings
+import sqlite3
+
 # Show the view for the message page
 
 def process_request(request, Handler):
@@ -11,11 +11,11 @@ def process_request(request, Handler):
 		if message_id <= 0:
 			raise Exception
 		
-		db = MySQLdb.connect(settings.MYSQL_HOST, settings.MYSQL_USER, settings.MYSQL_PASS, settings.MYSQL_DB)
+		conn = sqlite3.connect('temp.db', isolation_level=None)
 	
-		cursor = db.cursor()
-		cursor.execute("DELETE FROM message WHERE message_id = %d" % message_id)
-		db.close()
+		cursor = conn.cursor()
+		cursor.execute("DELETE FROM message WHERE message_id = ?", (str(message_id)))
+		conn.close()
 		
 		Handler.send_response(301)
 		Handler.send_header('Location', '/')

@@ -248,14 +248,12 @@ table td {
 	border-bottom: 1px solid #CCC;
 }
 
-.messagebox .message iframe {
-	margin-top: 10px;
-	border-top: 1px solid #CCC;
-}
-
 .messagebox .message iframe, .messagebox .message pre {
 	font-family: Arial, Helvetica, sans-serif;
 	color: #818181;
 	width: 100%;
 	overflow: auto;
+	margin-top: 10px;
+	border-top: 1px solid #CCC;
+	padding-top: 10px;
 }
