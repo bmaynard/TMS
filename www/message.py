@@ -11,13 +11,15 @@ def process_request(request, Handler):
 		if message_id <= 0:
 			raise Exception
 		
-			
 		conn = sqlite3.connect('temp.db', isolation_level=None)
 		
 		cursor = conn.cursor()
 		cursor.execute ("SELECT message_id, mail_from, mail_to, content_type, subject, received_date, text_body, html_body, original FROM message WHERE message_id = ?", (str(message_id)))
 		result = cursor.fetchone()
 		conn.close()
+		
+		if result == None:
+			raise Exception('Email message not found')
 	
 		if request.parsed_query.has_key('onlymsg') == True:
 			return result[7]

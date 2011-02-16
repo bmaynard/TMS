@@ -21,3 +21,7 @@ You can visit the web client by going to:
 	http://localhost:8181
 	
 Now set your email application to send email the the ip and port of the TMS server.
+
+## Notes
+
+If you want to use basic authentication to login into the web client, then set USERNAME and PASSWORD in settings.py. Setting USERNAME to False will turn of the authentication.
