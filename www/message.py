@@ -19,17 +19,23 @@ def process_request(request, Handler):
 		cursor.execute ("SELECT message_id, mail_from, mail_to, content_type, subject, received_date, text_body, html_body, headers FROM message WHERE message_id = %d" % message_id)
 		result = cursor.fetchone()
 		db.close()
-
-		try:
-			if request.parsed_query['onlymsg'][0] == 'true':
-				return result[7]
-		except:
-			#do nothing
-			nothing = True	
+	
+		if request.parsed_query.has_key('onlymsg') == True:
+			return result[7]
+		
+		# Due to UTF-8 and jinga, we will just print the text avoiding jinja template library
+		# TODO: Fix this issue
+		if request.parsed_query.has_key('onlytext') == True:
+			return result[6]
 		
 		ROOT = abspath(dirname(__file__))
 		env = Environment(autoescape=True,loader=FileSystemLoader(join(ROOT, 'templates')))
 		template = env.get_template('message.html')
+		
+		has_text = False
+		
+		if result[6] != '':
+			has_text = True
 		
 		message = {
 					'message_id': result[0],
@@ -38,7 +44,7 @@ def process_request(request, Handler):
 					'content_type': result[3],
 					'subject': result[4],
 					'received_date': result[5],
-					'text_body': result[6],
+					'text_body': has_text,
 					'html_body': result[7],
 					'headers': result[8],
 				}

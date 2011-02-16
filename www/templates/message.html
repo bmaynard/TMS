@@ -30,10 +30,15 @@
 			{% endif %}
 		</div>
 		<div class="message">
-			{% if message.text_body != '' %}
+			{% if message.text_body == True %}
 			<p><a href="#" onclick="$('#textEmail').toggle();return false;">Toggle Text</a></p>
 			<div id="textEmail" style="display:none;">
-				<pre>{{ message.text_body }}</pre>
+				<pre id="text_body"></pre>
+				<script type="text/javascript">
+					$.get('/message?id={{ message.message_id }}&amp;onlytext=true', function(data) {
+						$('#text_body').html(data);
+					});
+				</script>
 			</div>
 			{% endif %}
 		</div>

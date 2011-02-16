@@ -28,7 +28,8 @@ class TMSSMTPServer(smtpd.SMTPServer):
 							except:
 								print "Unable to decode/encode html email"
 						else:
-							text_body += '%s' % '='*80
+							if (text_body != ''):
+								text_body += '%s' % '='*80
 							text_body += part.get_payload(decode=True)
 							try:
 								text_body = text_body.decode(part.get_content_charset())
