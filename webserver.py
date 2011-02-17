@@ -30,7 +30,7 @@ class Handler(BaseHTTPRequestHandler):
 				
 			else:
 				# Is the a file in the file system?
-				ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), 'www/templates'))
+				ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), 'www/templates/static'))
 				
 				try:
 					file_path = ROOT + parsed_path.path

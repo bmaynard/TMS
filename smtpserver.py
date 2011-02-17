@@ -19,16 +19,16 @@ class TMSSMTPServer(smtpd.SMTPServer):
 			if msg.get_content_maintype() == 'multipart':
 				for part in msg.get_payload():
 					if part.get_content_type() == 'text/html':
-						html_body = part.get_payload(decode=True)
 						try:
+							html_body = part.get_payload(decode=True)
 							html_body = html_body.decode(part.get_content_charset())
 						except:
 							print "Unable to decode html email"
 					else:
 						if (text_body != ''):
 							text_body += '%s' % '='*80
-						text_body += part.get_payload(decode=True)
 						try:
+							text_body += part.get_payload(decode=True)
 							text_body = text_body.decode(part.get_content_charset())
 						except:
 							print "Unable to decode text email"
@@ -38,11 +38,8 @@ class TMSSMTPServer(smtpd.SMTPServer):
 			
 			conn = sqlite3.connect('temp.db', isolation_level=None)
 			cursor = conn.cursor()
-			cursor.execute('''
-				INSERT INTO
-					`message`
-				VALUES (NULL, ?, ?, ?, ?, datetime('now'), ?, ?, ?)		
-			''',
+			cursor.execute(
+				'INSERT INTO	`message` VALUES (NULL, ?, ?, ?, ?, datetime(\'now\'), ?, ?, ?)',
 				(msg['from'], msg['to'], msg.get_content_type(), msg['subject'], text_body, html_body, data)
 			)
 			
