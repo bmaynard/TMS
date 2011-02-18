@@ -8,7 +8,7 @@ TMS requires the following module to be installed:
 
 * Jinja2 (http://jinja.pocoo.org/)
 
-You will need to rename conf/settings.dist.py to conf/settings.py and change any settings if needed.
+If you need to change any settings eg: smtp or web port, set the username/password for the web client then you can edit the conf/settings.py file.
 
 ## Running TMS
 
