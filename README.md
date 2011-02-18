@@ -20,7 +20,7 @@ You can visit the web client by going to:
 
 	http://localhost:8181
 	
-Now set your email application to send email the the ip and port of the TMS server.
+Now set your application to send email the the ip and port of the TMS server.
 
 ## Notes
 
