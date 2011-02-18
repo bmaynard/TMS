@@ -8,7 +8,7 @@ TMS requires the following module to be installed:
 
 * Jinja2 (http://jinja.pocoo.org/)
 
-You will need to rename settings.dist.py to settings.py and change any settings if needed.
+You will need to rename conf/settings.dist.py to conf/settings.py and change any settings if needed.
 
 ## Running TMS
 
@@ -22,4 +22,4 @@ Now set your application to send email to the ip and port of the TMS server. You
 
 ## Notes
 
-If you want to use basic http authentication to login into the web client, then change USERNAME and PASSWORD variables in settings.py. Setting USERNAME to False will turn of the authentication.
+If you want to use basic http authentication to login into the web client, then change USERNAME and PASSWORD variables in conf/settings.py. Setting USERNAME to False will turn of the authentication mode.

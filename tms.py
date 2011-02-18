@@ -1,29 +1,13 @@
 import time
 import os
-import settings
-from webserver import TMSWebServer
-from smtpserver import TMSEmailServer
+from conf import settings
+from http.server import TMSWebServer
+from smtp.server import TMSEmailServer
+from db.query import check_table_exists, delete_db
 import sqlite3
 		
 if __name__ == "__main__":	
-	conn = sqlite3.connect('temp.db', isolation_level=None)
-	cursor = conn.cursor()
-	
-	cursor.execute('''
-		CREATE TABLE IF NOT EXISTS `message` (
-			`message_id` integer primary key,
-			`mail_from` text,
-			`mail_to` text,
-			`content_type` text,
-			`subject` text,
-			`received_date` text,
-			`text_body` text,
-			`html_body` text,
-			`original` text
-			)
-	''')
-	
-	conn.close()
+	check_table_exists()
 	
 	mailServer = TMSEmailServer((settings.LISTEN_IP, settings.SMTP_PORT))
 	mailServer.start()
@@ -43,8 +27,5 @@ if __name__ == "__main__":
 			del mailServer
 			del webServer
 			running = False
-			
-			if settings.DELETE_DB_ON_EXIT == True:
-				os.remove('temp.db')
-			
+			delete_db()			
 			print "TMS Stopped"
