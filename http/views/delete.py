@@ -1,5 +1,5 @@
 from http.response import HttpRenderResponse, HttpResponseRedirect
-from db.query import query
+from db.models.message import Message
 
 def process_request(request):
 	try:
@@ -8,7 +8,7 @@ def process_request(request):
 		if message_id <= 0:
 			raise Exception
 		
-		query("DELETE FROM message WHERE message_id = ?", [str(message_id)])
+		Message().delete(message_id)
 		
 		return HttpResponseRedirect('/')
 	except:

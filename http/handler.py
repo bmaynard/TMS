@@ -37,8 +37,10 @@ class Handler(BaseHTTPRequestHandler):
 					f = open(file_path)
 					
 					self.send_response(200)
-					mimetype = mimetypes.guess_type(file_path)
+					mimetype, _ = mimetypes.guess_type(file_path)
 					self.send_header('Content-type', mimetype)
+					fs = os.fstat(f.fileno())
+					self.send_header("Content-Length", str(fs[6]))
 					self.end_headers()
 					
 					for s in f:
@@ -50,7 +52,7 @@ class Handler(BaseHTTPRequestHandler):
 					self.end_headers()
 					self.wfile.write("<html><title>Page Not Found</title><body><h1>Page Not Found!</h1>")
 					self.wfile.write("</body></html>")
-		except:
+		except Exception, e:
 			self.send_response(401)
 			self.send_header('WWW-Authenticate', 'Basic realm="TMS Adminstration"')
 			self.end_headers()

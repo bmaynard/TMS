@@ -2,7 +2,8 @@ import asyncore
 import threading
 import smtpd
 import email
-from db.query import query
+from db.models.message import Message
+from datetime import datetime
 
 # Catch any mail sent to the server and save it
 class TMSSMTPServer(smtpd.SMTPServer):
@@ -35,10 +36,16 @@ class TMSSMTPServer(smtpd.SMTPServer):
 			elif msg.get_content_maintype() == 'text':
 				text_body = msg.get_payload(decode=True)
 			
-			query(
-				'INSERT INTO `message` VALUES (NULL, ?, ?, ?, ?, datetime(\'now\'), ?, ?, ?)',
-				(msg['from'], msg['to'], msg.get_content_type(), msg['subject'], text_body, html_body, data)
-			)
+			Message().save(
+						mail_from 	= msg['from'],
+						mail_to		= msg['to'],
+						content_type = msg.get_content_type(),
+						subject		= msg['subject'],
+						text_body	= text_body,
+						html_body	= html_body,
+						original	= data,
+						received_date = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+						)
 			
 			print '%s' % '='*80
 			print 'New email added to database (To: %s; Subject: %s) ' % (msg['to'], msg['subject'])

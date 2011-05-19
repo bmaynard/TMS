@@ -14,13 +14,13 @@
 	</tr>
 	{% for row in rows %}
 	<tr>
-		<td>{{ row[1] }}</td>
-		<td>{{ row[2] }}</td>
-		<td>{{ row[3] }}</td>
-		<td>{{ row[4] }}</td>
-		<td><a id="link-{{ row[0] }}" href="/message?id={{ row[0] }}">View Email</a> | <a href="/delete?id={{ row[0] }}" onclick="return window.confirm('Are you sure you wish to delete this message?');">Delete</a>
+		<td>{{ row['mail_from'] }}</td>
+		<td>{{ row['mail_to'] }}</td>
+		<td>{{ row['subject'] }}</td>
+		<td>{{ row['received_date'] }}</td>
+		<td><a id="link-{{ row['message_id'] }}" href="/message?id={{ row['message_id'] }}">View Email</a> | <a href="/delete?id={{ row['message_id'] }}" onclick="return window.confirm('Are you sure you wish to delete this message?');">Delete</a>
 		<script type="text/javascript">
-			$("#link-{{ row[0] }}").fancybox({
+			$("#link-{{ row['message_id'] }}").fancybox({
 				'titlePosition'		: 'outside',
 				'width'				: '75%',
 				'height'			: '75%',
