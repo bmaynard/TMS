@@ -6,11 +6,14 @@ from http.views.route import urlroutes
 from http.response import HttpResponseRedirect
 from http.authentication import authorized
 
+class AuthenticationException(Exception):
+	pass
+
 class Handler(BaseHTTPRequestHandler):
 	def do_GET(self):
 		try:
 			if authorized(self.headers.getheader('Authorization')) != True:
-				raise Exception
+				raise AuthenticationException
 			
 			parsed_path = urlparse(self.path)
 			
@@ -52,7 +55,7 @@ class Handler(BaseHTTPRequestHandler):
 					self.end_headers()
 					self.wfile.write("<html><title>Page Not Found</title><body><h1>Page Not Found!</h1>")
 					self.wfile.write("</body></html>")
-		except Exception, e:
+		except AuthenticationException:
 			self.send_response(401)
 			self.send_header('WWW-Authenticate', 'Basic realm="TMS Adminstration"')
 			self.end_headers()
