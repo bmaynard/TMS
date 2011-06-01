@@ -43,7 +43,7 @@ class Model(object):
 		
 		result = query.fetchall(sqlQuery)
 		
-		if result == None:
+		if len(result) == 0:
 			raise ModelException("No results found")
 		
 		data = []
