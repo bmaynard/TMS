@@ -4,7 +4,8 @@ sys.path.append(sys.path[0] + "/../")
 
 TEST_MODULES = [
 			'db_test',
-			'http_test'
+			'http_test',
+			'smtp_test'
 ]
 
 def suite():
