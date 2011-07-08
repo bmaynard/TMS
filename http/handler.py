@@ -18,7 +18,7 @@ class Handler(BaseHTTPRequestHandler):
 			parsed_path = urlparse(self.path)
 			
 			if (urlroutes.has_key(parsed_path.path)):
-				exec("import http.views." + urlroutes[parsed_path.path] + " as webmodule")
+				webmodule = __import__('http.views.' + urlroutes[parsed_path.path], globals(), locals(), ['process_request'])
 				parsed_path.parsed_query = parse_qs(parsed_path.query)
 				response = webmodule.process_request(parsed_path)
 				
