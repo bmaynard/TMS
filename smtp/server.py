@@ -60,7 +60,7 @@ class TMSEmailServer(threading.Thread):
 		
 	def run(self):
 		while not self._stopevent.isSet():
-			asyncore.loop(timeout = 0.001, count = 1)
+			asyncore.loop(timeout = 1, count = 1)
 			
 	def stop(self, timeout=None):
 		self._stopevent.set()
